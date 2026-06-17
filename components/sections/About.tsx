@@ -33,12 +33,12 @@ export function About() {
             transition={{ duration: 0.55 }}
           >
             <div className="flex items-start gap-6 mb-6">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl overflow-hidden border border-hairline ring-2 ring-signal-cyan/20">
+              <div className="relative w-20 h-24 sm:w-24 sm:h-28 shrink-0 rounded-2xl overflow-hidden border border-hairline ring-2 ring-signal-cyan/20">
                 <Image
                   src={site.profileImage}
                   alt={site.name}
                   fill
-                  className="object-cover"
+                  className="object-scale-down"
                   sizes="96px"
                 />
               </div>
