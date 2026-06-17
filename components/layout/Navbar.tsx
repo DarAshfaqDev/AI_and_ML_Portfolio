@@ -1,58 +1,55 @@
 "use client";
 // components/layout/Navbar.tsx
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileDown } from "lucide-react";
-import { useActiveSection } from "@/hooks/useActiveSection";
 import { ThemeToggle } from "./ThemeToggle";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "research", label: "Research" },
-  { id: "timeline", label: "Journey" },
-  { id: "experience", label: "Experience" },
-  { id: "contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/skills", label: "Skills" },
+  { href: "/projects", label: "Projects" },
+  { href: "/research", label: "Research" },
+  { href: "/journey", label: "Journey" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const active = useActiveSection(["hero", ...NAV_ITEMS.map((n) => n.id)]);
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMobileOpen(false);
-  };
+  const pathname = usePathname();
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 sm:px-8 py-3.5 mt-3 glass rounded-2xl shadow-glass md:mx-6 lg:mx-auto">
-        <button
-          onClick={() => scrollTo("hero")}
+        <Link
+          href="/"
           className="font-display text-sm font-semibold tracking-tight text-ink"
         >
           ishfaq<span className="text-signal-cyan">.dar</span>
           <span className="ml-1.5 font-mono text-[10px] text-ink-faint align-top">
             v1.ai
           </span>
-        </button>
+        </Link>
 
         <ul className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
-            <li key={item.id}>
-              <button
-                onClick={() => scrollTo(item.id)}
+            <li key={item.href}>
+              <Link
+                href={item.href}
                 className={cn(
                   "relative px-3.5 py-2 text-[13px] font-medium rounded-full transition-colors",
-                  active === item.id
+                  pathname === item.href
                     ? "text-ink"
                     : "text-ink-muted hover:text-ink"
                 )}
               >
-                {active === item.id && (
+                {pathname === item.href && (
                   <motion.span
                     layoutId="nav-pill"
                     className="absolute inset-0 rounded-full bg-white/8 border border-white/10"
@@ -60,7 +57,7 @@ export function Navbar() {
                   />
                 )}
                 <span className="relative z-10">{item.label}</span>
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
@@ -95,18 +92,19 @@ export function Navbar() {
           >
             <ul className="flex flex-col p-2">
               {NAV_ITEMS.map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => scrollTo(item.id)}
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "w-full text-left px-4 py-3 rounded-xl text-sm transition-colors",
-                      active === item.id
+                      "w-full text-left px-4 py-3 rounded-xl text-sm transition-colors block",
+                      pathname === item.href
                         ? "text-ink bg-white/5"
                         : "text-ink-muted"
                     )}
                   >
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
               <li className="flex items-center justify-between px-4 py-3">

@@ -1,13 +1,14 @@
 // components/layout/Footer.tsx
+import Link from "next/link";
 import { Github, Linkedin, Mail, Code2 } from "lucide-react";
 import { site } from "@/data/site";
 
 const quickLinks = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "research", label: "Research" },
-  { id: "contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/skills", label: "Skills" },
+  { href: "/projects", label: "Projects" },
+  { href: "/research", label: "Research" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
@@ -29,13 +30,13 @@ export function Footer() {
           <p className="eyebrow text-ink-faint mb-4">Quick Links</p>
           <ul className="space-y-2.5">
             {quickLinks.map((l) => (
-              <li key={l.id}>
-                <a
-                  href={`#${l.id}`}
+              <li key={l.href}>
+                <Link
+                  href={l.href}
                   className="text-sm text-ink-muted hover:text-signal-cyan transition-colors"
                 >
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -88,10 +89,10 @@ export function Footer() {
       <div className="border-t border-hairline">
         <div className="mx-auto max-w-6xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-ink-faint">
-            © {year} {site.name}. All rights reserved.
+            &copy; {year} {site.name}. All rights reserved.
           </p>
           <p className="font-mono text-[11px] text-ink-faint">
-            built with next.js · tailwind · three.js
+            built with next.js &middot; tailwind &middot; three.js
           </p>
         </div>
       </div>

@@ -80,25 +80,25 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-10 flex flex-wrap items-center gap-3"
             >
-              <a
-                href="#projects"
-                className="rounded-full bg-signal-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow-blue hover:opacity-90 transition-opacity"
-              >
-                View Projects
-              </a>
-              <a
-                href={site.resumeUrl}
-                download
-                className="rounded-full border border-hairline px-6 py-3 text-sm font-semibold text-ink hover:border-signal-cyan/50 hover:text-signal-cyan transition-colors"
-              >
-                Download Resume
-              </a>
-              <a
-                href="#contact"
-                className="rounded-full px-6 py-3 text-sm font-semibold text-ink-muted hover:text-ink transition-colors"
-              >
-                Contact Me →
-              </a>
+          <a
+            href="/projects"
+            className="rounded-full bg-signal-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow-blue hover:opacity-90 transition-opacity"
+          >
+            View Projects
+          </a>
+          <a
+            href={site.resumeUrl}
+            download
+            className="rounded-full border border-hairline px-6 py-3 text-sm font-semibold text-ink hover:border-signal-cyan/50 hover:text-signal-cyan transition-colors"
+          >
+            Download Resume
+          </a>
+          <a
+            href="/contact"
+            className="rounded-full px-6 py-3 text-sm font-semibold text-ink-muted hover:text-ink transition-colors"
+          >
+            Contact Me →
+          </a>
             </motion.div>
 
             <motion.div

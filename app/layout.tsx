@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
 import { ScrollProgressBar } from "@/components/layout/ScrollProgressBar";
 import { BackToTop } from "@/components/layout/BackToTop";
@@ -104,7 +106,9 @@ export default function RootLayout({
           <ScrollProgressBar />
           <CustomCursor />
           <CommandPalette />
-          {children}
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
           <BackToTop />
         </ThemeProvider>
       </body>
