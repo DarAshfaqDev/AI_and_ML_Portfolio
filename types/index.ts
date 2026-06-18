@@ -24,6 +24,7 @@ export interface Project {
   demo?: string;
   image?: string;
   featured?: boolean;
+  status?: "completed" | "in-progress" | "planned";
 }
 
 export interface ResearchInterest {

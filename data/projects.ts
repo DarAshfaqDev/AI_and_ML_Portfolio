@@ -16,6 +16,7 @@ export const projects: Project[] = [
     github: "https://github.com/DarAshfaqDev/Content-Based-Medical-Image-Retrieval-CBMIR",
     demo: "",
     featured: true,
+    status: "completed",
   },
   {
     id: "flower-clustering",
@@ -30,6 +31,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/DarAshfaqDev/Object-Classification-by-Unsupervised-Learning-with-VGG16-KMeans",
     demo: "",
+    status: "completed",
   },
   {
     id: "weather-analytics",
@@ -44,6 +46,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/DarAshfaqDev/Weather-Analytics-Forecasting-Platform",
     demo: "",
+    status: "in-progress",
   },
   {
     id: "text-to-sql",
@@ -58,5 +61,6 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/DarAshfaqDev/Text_to_SQL_Agent",
     demo: "",
+    status: "completed",
   },
 ];

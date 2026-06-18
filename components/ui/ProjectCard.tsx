@@ -2,7 +2,7 @@
 // components/ui/ProjectCard.tsx
 import { ElementType } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Brain, Flower2, CloudSun, MessageSquareText } from "lucide-react";
+import { Github, ExternalLink, Brain, Flower2, CloudSun, MessageSquareText, Lock } from "lucide-react";
 import { Project } from "@/types";
 import { Badge } from "@/components/ui/GlassCard";
 
@@ -11,6 +11,12 @@ const projectIcons: Record<string, ElementType> = {
   "flower-clustering": Flower2,
   "weather-analytics": CloudSun,
   "text-to-sql": MessageSquareText,
+};
+
+const statusStyles: Record<string, string> = {
+  completed: "bg-emerald-500/15 text-emerald-400 border-emerald-500/25",
+  "in-progress": "bg-amber-500/15 text-amber-400 border-amber-500/25",
+  planned: "bg-ink-faint/10 text-ink-faint border-ink-faint/20",
 };
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -31,66 +37,82 @@ export function ProjectCard({ project }: { project: Project }) {
         </span>
       )}
 
-      <div className="h-32 sm:h-40 bg-gradient-to-br from-signal/5 via-signal-cyan/5 to-signal-violet/5 flex items-center justify-center border-b border-hairline">
+      <div className="h-32 sm:h-40 bg-gradient-to-br from-signal/5 via-signal-cyan/5 to-signal-violet/5 flex items-center justify-center border-b border-hairline relative">
         <div className="relative">
           <div className="absolute inset-0 bg-signal-gradient opacity-10 blur-2xl rounded-full" />
           <Icon size={48} className="text-signal-cyan/40" />
         </div>
+        {project.status && (
+          <span
+            className={`absolute top-3 right-3 rounded-full border px-2.5 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider ${statusStyles[project.status] || statusStyles.planned}`}
+          >
+            {project.status}
+          </span>
+        )}
       </div>
 
-      <div className="p-7 pt-6">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h3 className="font-display text-xl font-semibold text-ink">
-              {project.title}
-            </h3>
-            <p className="mt-1 text-sm text-signal-cyan">{project.subtitle}</p>
-          </div>
-          <div className="flex items-center gap-3 shrink-0 pt-1">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} GitHub repository`}
-                className="text-ink-faint hover:text-ink transition-colors"
-              >
-                <Github size={17} />
-              </a>
-            )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} live demo`}
-                className="text-ink-faint hover:text-ink transition-colors"
-              >
-                <ExternalLink size={17} />
-              </a>
-            )}
-          </div>
-        </div>
-
-        <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-          {project.description}
-        </p>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <Badge key={tag}>{tag}</Badge>
-          ))}
-        </div>
-
-        <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5">
-          {project.metrics.map((m) => (
-            <div key={m.label}>
-              <p className="font-display text-lg font-semibold text-ink">
-                {m.value}
-              </p>
-              <p className="text-xs text-ink-faint">{m.label}</p>
+      <div className="p-7 pt-6 flex flex-col h-[calc(100%-8rem)]">
+        <div className="flex-1">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h3 className="font-display text-xl font-semibold text-ink">
+                {project.title}
+              </h3>
+              <p className="mt-1 text-sm text-signal-cyan">{project.subtitle}</p>
             </div>
-          ))}
+          </div>
+
+          <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+            {project.description}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5">
+            {project.metrics.map((m) => (
+              <div key={m.label}>
+                <p className="font-display text-lg font-semibold text-ink">
+                  {m.value}
+                </p>
+                <p className="text-xs text-ink-faint">{m.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 flex items-center gap-3 pt-4 border-t border-hairline">
+          <a
+            href={project.github || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-hairline bg-ink-faint/5 px-4 py-2.5 text-sm font-medium text-ink hover:bg-ink-faint/10 hover:border-signal-cyan/30 transition-all"
+          >
+            <Github size={16} />
+            View Code
+          </a>
+          {project.demo ? (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-signal-gradient px-4 py-2.5 text-sm font-medium text-white hover:shadow-glow-blue transition-all"
+            >
+              <ExternalLink size={16} />
+              Live Demo
+            </a>
+          ) : (
+            <span
+              title="No live demo available"
+              className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-hairline bg-ink-faint/5 px-4 py-2.5 text-sm font-medium text-ink-faint/50 cursor-not-allowed"
+            >
+              <Lock size={14} />
+              Live Demo
+            </span>
+          )}
         </div>
       </div>
     </motion.div>
