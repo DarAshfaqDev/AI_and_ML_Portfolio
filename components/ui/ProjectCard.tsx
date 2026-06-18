@@ -29,7 +29,7 @@ export function ProjectCard({ project }: { project: Project }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -4 }}
-      className="group relative glass rounded-2xl shadow-glass hover:border-signal-cyan/30 hover:shadow-glow-cyan transition-[border-color,box-shadow] duration-300 overflow-hidden"
+      className="group relative glass rounded-2xl shadow-glass hover:border-signal-cyan/30 hover:shadow-glow-cyan transition-[border-color,box-shadow] duration-300 overflow-hidden flex flex-col"
     >
       <div className="h-32 sm:h-40 bg-gradient-to-br from-signal/5 via-signal-cyan/5 to-signal-violet/5 flex items-center justify-center border-b border-hairline relative overflow-hidden">
         <div className="relative">
@@ -50,35 +50,37 @@ export function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <div className="p-7 pt-6">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h3 className="font-display text-xl font-semibold text-ink">
-              {project.title}
-            </h3>
-            <p className="mt-1 text-sm text-signal-cyan">{project.subtitle}</p>
-          </div>
-        </div>
-
-        <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-          {project.description}
-        </p>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <Badge key={tag}>{tag}</Badge>
-          ))}
-        </div>
-
-        <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5">
-          {project.metrics.map((m) => (
-            <div key={m.label}>
-              <p className="font-display text-lg font-semibold text-ink">
-                {m.value}
-              </p>
-              <p className="text-xs text-ink-faint">{m.label}</p>
+      <div className="flex-1 flex flex-col p-7 pt-6">
+        <div className="flex-1">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h3 className="font-display text-xl font-semibold text-ink">
+                {project.title}
+              </h3>
+              <p className="mt-1 text-sm text-signal-cyan">{project.subtitle}</p>
             </div>
-          ))}
+          </div>
+
+          <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+            {project.description}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5">
+            {project.metrics.map((m) => (
+              <div key={m.label}>
+                <p className="font-display text-lg font-semibold text-ink">
+                  {m.value}
+                </p>
+                <p className="text-xs text-ink-faint">{m.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <a
