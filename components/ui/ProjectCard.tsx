@@ -31,20 +31,19 @@ export function ProjectCard({ project }: { project: Project }) {
       whileHover={{ y: -4 }}
       className="group relative glass rounded-2xl shadow-glass hover:border-signal-cyan/30 hover:shadow-glow-cyan transition-[border-color,box-shadow] duration-300 overflow-hidden"
     >
-      {project.featured && (
-        <span className="absolute -top-3 left-7 rounded-full bg-signal-gradient px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-white shadow-glow-blue z-10">
-          Flagship
-        </span>
-      )}
-
-      <div className="h-32 sm:h-40 bg-gradient-to-br from-signal/5 via-signal-cyan/5 to-signal-violet/5 flex items-center justify-center border-b border-hairline relative">
+      <div className="h-32 sm:h-40 bg-gradient-to-br from-signal/5 via-signal-cyan/5 to-signal-violet/5 flex items-center justify-center border-b border-hairline relative overflow-hidden">
         <div className="relative">
           <div className="absolute inset-0 bg-signal-gradient opacity-10 blur-2xl rounded-full" />
           <Icon size={48} className="text-signal-cyan/40" />
         </div>
+        {project.featured && (
+          <span className="absolute top-2.5 left-3 rounded-full bg-signal-gradient px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-white shadow-glow-blue">
+            Flagship
+          </span>
+        )}
         {project.status && (
           <span
-            className={`absolute top-3 right-3 rounded-full border px-2.5 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider ${statusStyles[project.status] || statusStyles.planned}`}
+            className={`absolute top-2.5 right-3 rounded-full border px-2.5 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider ${statusStyles[project.status] || statusStyles.planned}`}
           >
             {project.status}
           </span>
