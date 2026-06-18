@@ -2,7 +2,7 @@
 // components/ui/ProjectCard.tsx
 import { ElementType } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Brain, Flower2, CloudSun, MessageSquareText, Lock } from "lucide-react";
+import { Github, Brain, Flower2, CloudSun, MessageSquareText } from "lucide-react";
 import { Project } from "@/types";
 import { Badge } from "@/components/ui/GlassCard";
 
@@ -51,69 +51,46 @@ export function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <div className="p-7 pt-6 flex flex-col h-[calc(100%-8rem)]">
-        <div className="flex-1">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <h3 className="font-display text-xl font-semibold text-ink">
-                {project.title}
-              </h3>
-              <p className="mt-1 text-sm text-signal-cyan">{project.subtitle}</p>
+      <div className="p-7 pt-6">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h3 className="font-display text-xl font-semibold text-ink">
+              {project.title}
+            </h3>
+            <p className="mt-1 text-sm text-signal-cyan">{project.subtitle}</p>
+          </div>
+        </div>
+
+        <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+          {project.description}
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <Badge key={tag}>{tag}</Badge>
+          ))}
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5">
+          {project.metrics.map((m) => (
+            <div key={m.label}>
+              <p className="font-display text-lg font-semibold text-ink">
+                {m.value}
+              </p>
+              <p className="text-xs text-ink-faint">{m.label}</p>
             </div>
-          </div>
-
-          <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-            {project.description}
-          </p>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Badge key={tag}>{tag}</Badge>
-            ))}
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 gap-3 border-t border-hairline pt-5">
-            {project.metrics.map((m) => (
-              <div key={m.label}>
-                <p className="font-display text-lg font-semibold text-ink">
-                  {m.value}
-                </p>
-                <p className="text-xs text-ink-faint">{m.label}</p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
 
-        <div className="mt-6 flex items-center gap-3 pt-4 border-t border-hairline">
-          <a
-            href={project.github || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-hairline bg-ink-faint/5 px-4 py-2.5 text-sm font-medium text-ink hover:bg-ink-faint/10 hover:border-signal-cyan/30 transition-all"
-          >
-            <Github size={16} />
-            View Code
-          </a>
-          {project.demo ? (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-signal-gradient px-4 py-2.5 text-sm font-medium text-white hover:shadow-glow-blue transition-all"
-            >
-              <ExternalLink size={16} />
-              Live Demo
-            </a>
-          ) : (
-            <span
-              title="No live demo available"
-              className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-hairline bg-ink-faint/5 px-4 py-2.5 text-sm font-medium text-ink-faint/50 cursor-not-allowed"
-            >
-              <Lock size={14} />
-              Live Demo
-            </span>
-          )}
-        </div>
+        <a
+          href={project.github || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex items-center justify-center gap-2 rounded-lg border border-hairline bg-ink-faint/5 px-4 py-3 text-sm font-medium text-ink hover:bg-signal-gradient hover:text-white hover:border-transparent transition-all"
+        >
+          <Github size={16} />
+          View Code
+        </a>
       </div>
     </motion.div>
   );
