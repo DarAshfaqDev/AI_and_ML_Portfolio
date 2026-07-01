@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { site } from "@/data/site";
 
-const username = "Dar-Ishfaq-1";
+const username = "AshfaqAIML";
 
 export function GithubAnalytics() {
   return (

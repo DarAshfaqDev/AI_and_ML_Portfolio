@@ -22,7 +22,7 @@ export const site = {
   resumeUrl: "/resume/Ishfaq_Dar_AI_ML_Resume.pdf",
   profileImage: "/images/profile.png",
   social: {
-    github: "https://github.com/Dar-Ishfaq-1",
+    github: "https://github.com/AshfaqAIML",
     linkedin: "https://www.linkedin.com/in/ishfaq-ahmad-dar-aaa277240/",
     leetcode: "https://leetcode.com/Dar-Ishfaq-1/",
     email: "mailto:dar1.ishfaq36@gmail.com",
